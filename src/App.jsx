@@ -37,7 +37,11 @@ export const App = () => {
     };
   });
   const selectedClass = 'has-background-success-light';
-  const [selected, setSelected] = useState('Jam is selected');
+  const [selected, setSelected] = useState(() => {
+    const foundGood = goodsStart.find(good => good.isSelected);
+
+    return foundGood ? `${foundGood.name} is selected` : 'No goods selected';
+  });
   const [goodsInfo, setGoodsInfo] = useState(goodsStart);
 
   const toggleAvailability = name => {
